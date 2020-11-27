@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+static_cdn/
+static_root/
+
