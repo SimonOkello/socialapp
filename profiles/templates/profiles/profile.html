@@ -5,15 +5,93 @@ Profile
 {% endblock title %}
 
 {% block content %}
+<!-- UPDATE MODAL -->
+<div class="ui modal mymodal">
+    <i class="close icon"></i>
+    <div class="header">
+      Profile Picture
+    </div>
+    <div class="image content">
+      <div class="ui medium image">
+        <img src="{{obj.avatar.url}}">
+      </div>
+      <div class="description">
+        <div class="ui header">Update your info</div>
+        <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="ui positive button">Update Profile</button>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        Nope
+      </div>
+      <button type="submit" class="ui positive right labeled icon button">
+        Update
+        <i class="checkmark icon"></i>
+      </button>
+    </form>
+    </div>
+  </div>
+  <!-- END -->
+
 <h1>Profile</h1>
 <hr>
 
-{{obj.first_name}}
-<br>
-Friends: <br>
-{% for friend in obj.get_friends %}
-{{friend}}
-{% endfor %}
+<div class="ui segment">{% if confirm %}
+    <div class="ui green message">Profile updated!</div>
+    {% endif %}
+<h3>My profile: {{request.user}}</h3>
+<div class="ui grid">
+<div class="row">
+    <div class="six wide column">
+        <img class="ui medium rounded image" src="{{obj.avatar.url}}" alt="">
+        <div class="row mt-5">
+        <button class="ui secondary button" id="modal-btn">Update Profile</button>
+        </div>
+    </div>
+    <div class="ten wide column">
+        <table class="ui table">
+            <tbody>
+                <tr>
+                    <td>username</td>
+                    <td>{{request.user}}</td>
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td>{{obj.first_name}}</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>{{obj.last_name}}</td>
+                </tr>
+                <tr>
+                    <td>Bio</td>
+                    <td>{{obj.bio}}</td>
+                </tr>
+                <tr>
+                  <td>Number of posts</td>
+                  <td>{{obj.posts_count}}</td>
+              </tr>
+                <tr>
+                  <td>Likes given</td>
+                  <td>{{obj.get_likes_given}}</td>
+              </tr>
+              <tr>
+                <td>Likes Received</td>
+                <td>{{obj.get_likes_received}}</td>
+            </tr>
+            
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>
+</div>
+
 {% endblock content %}
 
 {% block scripts %}

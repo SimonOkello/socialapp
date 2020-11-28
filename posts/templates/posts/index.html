@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block content %}
+{% for item in qs %}
+{{item}}
+{% endfor %}
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}
