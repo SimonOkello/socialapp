@@ -20,7 +20,6 @@ Profile
         <form action="" method="POST" class="ui form" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
-            <button type="submit" class="ui positive button">Update Profile</button>
       </div>
     </div>
     <div class="actions">
@@ -71,6 +70,10 @@ Profile
                     <td>{{obj.bio}}</td>
                 </tr>
                 <tr>
+                  <td>Number of friends</td>
+                  <td>{{obj.get_friends_no}}</td>
+              </tr>
+                <tr>
                   <td>Number of posts</td>
                   <td>{{obj.posts_count}}</td>
               </tr>
@@ -82,7 +85,7 @@ Profile
                 <td>Likes Received</td>
                 <td>{{obj.get_likes_received}}</td>
             </tr>
-            
+
 
             </tbody>
         </table>
